@@ -62,6 +62,7 @@
     <Compile Include="Assets\Health.cs" />
     <Compile Include="Assets\character\caractercontrol.cs" />
     <Compile Include="Assets\Field_Of_View.cs" />
+    <Compile Include="Assets\Field_Of_Attack.cs" />
     <Compile Include="Assets\managers\singleton.cs" />
     <Compile Include="Assets\managers\variablemanager.cs" />
     <Compile Include="Assets\character\keyboardinput.cs" />

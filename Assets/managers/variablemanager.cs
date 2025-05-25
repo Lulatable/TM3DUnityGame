@@ -12,5 +12,6 @@ using UnityEngine;
         public bool MoveDown;
         public bool MoveLeft;
         public bool Crawl;
+        public bool isGameOver;
 
     }

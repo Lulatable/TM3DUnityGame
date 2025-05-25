@@ -15,7 +15,10 @@ public class Ennemy_Follower : MonoBehaviour
     public Transform player;
     private NavMeshAgent agent;
     public Field_Of_View fov;
-    
+    public Field_Of_Attack foa;
+    public Health healthManager;
+    private long attackTick;
+
 
     void Start()
     {
@@ -27,8 +30,15 @@ public class Ennemy_Follower : MonoBehaviour
     {;
         if (fov.canSeePlayer)  
         {
-            agent.destination = player.position;
+// agent.destination = player.position;
         }
+        if (foa.canAttackPlayer && ( attackTick ==0 || System.DateTime.Now.Ticks - attackTick > 10000000))
+        {
+            healthManager.currentHealth = healthManager.currentHealth - 25;
+            // a vérifier ,pas sûre
+            attackTick = System.DateTime.Now.Ticks;
+        }
+
        
     }
 }
