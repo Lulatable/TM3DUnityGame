@@ -30,7 +30,7 @@ public class Ennemy_Follower : MonoBehaviour
     {;
         if (fov.canSeePlayer)  
         {
-// agent.destination = player.position;
+             agent.destination = player.position;
         }
         if (foa.canAttackPlayer && ( attackTick ==0 || System.DateTime.Now.Ticks - attackTick > 10000000))
         {

@@ -58,12 +58,13 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Ennemy_Follower.cs" />
-    <Compile Include="Assets\Health.cs" />
+    <Compile Include="Assets\enemy\ennemyFollower\Ennemy_Follower.cs" />
+    <Compile Include="Assets\enemy\ennemyFollower\Field_Of_Attack.cs" />
+    <Compile Include="Assets\character\Health.cs" />
     <Compile Include="Assets\character\caractercontrol.cs" />
-    <Compile Include="Assets\Field_Of_View.cs" />
-    <Compile Include="Assets\Field_Of_Attack.cs" />
+    <Compile Include="Assets\enemy\ennemyFollower\Field_Of_View.cs" />
     <Compile Include="Assets\managers\singleton.cs" />
+    <Compile Include="Assets\enemy\ennemyFollower\Ennemy_Spawner.cs" />
     <Compile Include="Assets\managers\variablemanager.cs" />
     <Compile Include="Assets\character\keyboardinput.cs" />
   </ItemGroup>
