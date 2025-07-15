@@ -22,10 +22,7 @@ public class menumanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (variableManager.instance.isGameOver == true)
-        {
-            SceneManager.LoadSceneAsync("end");
-        }
+        
 
     }
     void QuitApplication()

@@ -28,18 +28,19 @@ public class Ennemy_Follower : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         _finalTargetPos = getRandompos();
+        
     }
 
     // Update is called once per frame
     void Update()
     {;
-        if (!fov.canSeePlayer || !foa.canAttackPlayer) 
+        if (!fov.canSeePlayer && !foa.canAttackPlayer) 
         {
 
             agent.destination = _finalTargetPos;
-            if ((ennemy.transform.position - _targetPos).sqrMagnitude > 0.01f) 
+            if ((ennemy.transform.position - _finalTargetPos).sqrMagnitude > 0.01f) 
             {
-                _finalTargetPos = getRandompos();
+               // _finalTargetPos = getRandompos();
             }
         }
         if (fov.canSeePlayer)  
@@ -58,8 +59,10 @@ public class Ennemy_Follower : MonoBehaviour
     public Vector3 getRandompos()
     {
         _targetPos = Random.insideUnitCircle * distance;
+        Vector3 koko = new Vector3(_targetPos.x,0,_targetPos.y);
         NavMeshHit hit;
-        NavMesh.SamplePosition(_targetPos, out hit, distance, 1);
+        NavMesh.SamplePosition(koko, out hit, distance, 1);
+        print(hit.position);
         return hit.position;
     }
 }
