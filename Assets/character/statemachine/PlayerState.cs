@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerState
 {
     // pas monobehaviour pour ne pas prendre trop de place
-    protected Player player;
+    protected caractercontrol control;
     protected PlayerStateMachine stateMachine;
     protected Animator animationController;
     protected string animationName;
@@ -13,10 +13,10 @@ public class PlayerState
     protected bool isExitingState;
     protected bool isAnimationFinished;
     protected float startTime;
+    
 
-
-    public PlayerState(Player _player, PlayerStateMachine _stateMachine, Animator _animationController ,string _animationName) {
-        player = _player;
+    public PlayerState(caractercontrol _control , PlayerStateMachine _stateMachine, Animator _animationController ,string _animationName) {
+        control = _control;
         stateMachine = _stateMachine;
         animationController = _animationController;
         animationName = _animationName;
@@ -35,7 +35,7 @@ public class PlayerState
         if (!isAnimationFinished) isAnimationFinished = true;
         animationController.SetBool(animationName, false);
     }
-    public virtual LogicUpdate()
+    public virtual void LogicUpdate()
     {
         TransitionChecks();
     }

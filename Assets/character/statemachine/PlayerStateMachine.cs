@@ -8,7 +8,7 @@ public class PlayerStateMachine
 
     public PlayerState _CurrentState;
 
-
+    
 
     public void ChangeState(PlayerState newState)
     {

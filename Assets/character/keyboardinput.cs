@@ -28,9 +28,14 @@ public class keyboardinput : MonoBehaviour
         //bool mleft = Input.GetKey(KeyCode.A);
         //variableManager.instance.MoveUp = mleft;
 
-        
+
 
         // vérifie si une touche est pressé
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A))
+        {
+            variableManager.instance.isMoving = true;
+        }
+        else variableManager.instance.isMoving = false;
         if (Input.GetKey(KeyCode.W))
         {
             variableManager.instance.MoveUp = true;
@@ -51,6 +56,24 @@ public class keyboardinput : MonoBehaviour
             variableManager.instance.MoveLeft = true;
         }
         else variableManager.instance.MoveLeft = false;
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            variableManager.instance.Crouch = true;
+        }
+        else variableManager.instance.Crouch = false;
+
+        if (Input.GetMouseButton(0))
+        {
+            variableManager.instance.ShortAttack = true;
+        }
+        else variableManager.instance.ShortAttack = false;
+
+        if (Input.GetMouseButton(1))
+        {
+            variableManager.instance.LongAttack = true;
+        }
+        else variableManager.instance.LongAttack = false;
     }
 }
 

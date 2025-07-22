@@ -11,7 +11,11 @@ using UnityEngine;
         public bool MoveUp;
         public bool MoveDown;
         public bool MoveLeft;
-        public bool Crawl;
+        public bool Crouch;
         public bool isGameOver;
+        public bool LongAttack;
+        public bool ShortAttack;
+        public bool isMoving;
 
-    }
+
+}

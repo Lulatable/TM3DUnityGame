@@ -12,12 +12,20 @@ public class caractercontrol : MonoBehaviour
     public float speed;
  
     private Rigidbody rb;
+
+    private Animator animator;
     // Start is called before the first frame update
     private UnityEngine.Quaternion direction;
     public float turnSmoothTime;
     // public Transform cam;
 
-    private float turnSmoothVelocity; 
+    private float turnSmoothVelocity;
+
+    public player player;
+
+    
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,16 +33,17 @@ public class caractercontrol : MonoBehaviour
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         // So that the character doesn't collapse
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
+        animator = GetComponent<Animator>();
+        player = new player(this, animator);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        player.Update();
         direction = getDirections();
        // this.gameObject.transform.rotation = direction;
-
+       
        
 
         //if (variableManager.instance.MoveRight == true)
