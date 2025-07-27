@@ -11,6 +11,7 @@ public class crouchMoveState : ClassicSuperState
     public override void TransitionChecks()
     {
         base.TransitionChecks();
-        if (isMoving && isCrouching) stateMachine.ChangeState(control.player.crouchMoveState);
+        if (!isMoving && isCrouching) stateMachine.ChangeState(control.player.crouchIdleState);
+        if (!isMoving && !isCrouching) stateMachine.ChangeState(control.player.moveState);
     }
 }

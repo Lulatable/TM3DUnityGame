@@ -7,6 +7,21 @@ public class idleState : ClassicSuperState
     public idleState(caractercontrol _control, PlayerStateMachine _stateMachine, Animator _animationController, string _animationName) : base(_control, _stateMachine, _animationController, _animationName)
     {
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+       // animationController.SetBool(animationName, true);
+        
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        //animationController.SetBool(animationName, false);
+    }
+
+
     public override void TransitionChecks()
     {
         base.TransitionChecks();
@@ -14,8 +29,8 @@ public class idleState : ClassicSuperState
         if (!isMoving && isCrouching) stateMachine.ChangeState(control.player.crouchIdleState);
         
     }
-    public override void  Exit() 
+    public override void AnimationTrigger()
     { 
-
+        base.AnimationTrigger();
     }
 }

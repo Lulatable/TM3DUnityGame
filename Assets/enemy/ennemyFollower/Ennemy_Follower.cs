@@ -62,7 +62,6 @@ public class Ennemy_Follower : MonoBehaviour
         Vector3 koko = new Vector3(_targetPos.x,0,_targetPos.y);
         NavMeshHit hit;
         NavMesh.SamplePosition(koko, out hit, distance, 1);
-        print(hit.position);
         return hit.position;
     }
 }

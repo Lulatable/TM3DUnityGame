@@ -20,6 +20,7 @@ public class PlayerState
         stateMachine = _stateMachine;
         animationController = _animationController;
         animationName = _animationName;
+        isExitingState = true;
     }
 
     public virtual void Enter()
@@ -27,7 +28,12 @@ public class PlayerState
         isAnimationFinished = false;
         isExitingState = false;
         startTime = Time.time;
-        animationController.SetBool(animationName, true);
+        if(!animationController.GetBool(animationName))
+        {
+            animationController.SetBool(animationName, true);
+        }
+
+      
     }
     public virtual void Exit()
     {
@@ -42,7 +48,7 @@ public class PlayerState
     public virtual void PhysicsUpdate() { }
     public virtual void TransitionChecks() { }
 
-    public virtual void AnimationTrgger() 
+    public virtual void AnimationTrigger() 
     {
         isAnimationFinished = true;
     }

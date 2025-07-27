@@ -8,14 +8,33 @@ public class moveState : ClassicSuperState
     {
     }
 
+
+    public override void Enter()
+    {
+        base.Enter();
+        
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        
+    }
+    public override void AnimationTrigger()
+    {
+        base.AnimationTrigger();
+    }
+
     public override void TransitionChecks()
     {
         base.TransitionChecks();
-        if (isMoving && !isCrouching) stateMachine.ChangeState(control.player.moveState);
+        
+        if (!isMoving && !isCrouching) stateMachine.ChangeState(control.player.idleState);
+        if (isMoving && isCrouching) stateMachine.ChangeState(control.player.crouchMoveState);
     }
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        animationController.SetBool(animationName, true);
+        
     }
 }
