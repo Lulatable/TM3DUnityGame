@@ -17,9 +17,9 @@ public class player
         {
             stateMachine = new PlayerStateMachine();
             idleState = new idleState(_control, stateMachine, _animationController, "Idle");
-            moveState = new moveState(_control, stateMachine, _animationController, "Slow run");
-            crouchIdleState = new croucheIdleState(_control, stateMachine, _animationController, "crounch");
-            crouchMoveState = new crouchMoveState(_control, stateMachine, _animationController, "Crounched Walking");
+            moveState = new moveState(_control, stateMachine, _animationController, "Slow Run");
+            crouchIdleState = new croucheIdleState(_control, stateMachine, _animationController, "Idle Crouch");
+            crouchMoveState = new crouchMoveState(_control, stateMachine, _animationController, "Crouch");
 
             stateMachine.InitializeStateMachine(idleState);
         }
@@ -27,9 +27,15 @@ public class player
     
 
     // Update is called once per frame
-    public void Update()
+    public PlayerState Update()
     {
+        PlayerState theState = stateMachine._CurrentState;
         stateMachine._CurrentState.LogicUpdate();
         stateMachine._CurrentState.PhysicsUpdate();
+        if(theState != stateMachine._CurrentState)
+        {
+            return stateMachine._CurrentState;
+        }
+        return null;
     }
 }

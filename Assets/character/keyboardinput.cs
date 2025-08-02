@@ -6,14 +6,14 @@ public class keyboardinput : MonoBehaviour
 {
     //gère les input des touches du clavier
 
-
+    private bool crouchactive;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        crouchactive = false;
     }
 
     // Update is called once per frame
@@ -57,11 +57,18 @@ public class keyboardinput : MonoBehaviour
         }
         else variableManager.instance.MoveLeft = false;
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C)  && !crouchactive )
         {
             variableManager.instance.Crouch = true;
+            crouchactive = true;
         }
-        else variableManager.instance.Crouch = false;
+        
+        else if (Input.GetKeyDown(KeyCode.C) && crouchactive)
+        {
+            variableManager.instance.Crouch = false;
+            crouchactive = false;
+        }
+
 
         if (Input.GetMouseButton(0))
         {

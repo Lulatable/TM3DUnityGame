@@ -15,6 +15,11 @@ public class idleState : ClassicSuperState
         
     }
 
+    public override void Repeat()
+    {
+        base.Repeat();
+    }
+
     public override void Exit()
     {
         base.Exit();

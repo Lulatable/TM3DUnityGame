@@ -12,7 +12,11 @@ public class moveState : ClassicSuperState
     public override void Enter()
     {
         base.Enter();
-        
+    }
+
+    public override void Repeat()
+    {
+        base.Repeat();
     }
 
     public override void Exit()
@@ -29,8 +33,9 @@ public class moveState : ClassicSuperState
     {
         base.TransitionChecks();
         
-        if (!isMoving && !isCrouching) stateMachine.ChangeState(control.player.idleState);
-        if (isMoving && isCrouching) stateMachine.ChangeState(control.player.crouchMoveState);
+       if (!isMoving && !isCrouching) stateMachine.ChangeState(control.player.idleState);
+       if (isMoving && isCrouching) stateMachine.ChangeState(control.player.crouchMoveState);
+       
     }
     public override void PhysicsUpdate()
     {

@@ -13,7 +13,6 @@ public class caractercontrol : MonoBehaviour
  
     private Rigidbody rb;
 
-    private Animator animator;
     // Start is called before the first frame update
     private UnityEngine.Quaternion direction;
     public float turnSmoothTime;
@@ -33,14 +32,19 @@ public class caractercontrol : MonoBehaviour
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         // So that the character doesn't collapse
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        animator = GetComponent<Animator>();
+        Animator animator = GetComponent<Animator>();
         player = new player(this, animator);
     }
 
     // Update is called once per frame
     void Update()
     {
-        player.Update();
+        PlayerState state = player.Update();
+        if(state != null)
+        {
+            print("New state: " + state + " ");
+        }
+
         direction = getDirections();
        // this.gameObject.transform.rotation = direction;
        

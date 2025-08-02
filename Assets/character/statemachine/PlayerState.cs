@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class PlayerState
     protected bool isExitingState;
     protected bool isAnimationFinished;
     protected float startTime;
+
     
 
     public PlayerState(caractercontrol _control , PlayerStateMachine _stateMachine, Animator _animationController ,string _animationName) {
@@ -28,25 +30,45 @@ public class PlayerState
         isAnimationFinished = false;
         isExitingState = false;
         startTime = Time.time;
-        if(!animationController.GetBool(animationName))
-        {
-            animationController.SetBool(animationName, true);
-        }
+        //animationController.SetBool(animationName, true);
+        animationController.SetTrigger(animationName);
 
       
     }
+
+    public virtual void Repeat()
+    {
+        AnimatorStateInfo info = animationController.GetCurrentAnimatorStateInfo(0);
+        if(!info.IsName(animationName))
+        {
+            animationController.SetTrigger(animationName);
+        }
+    }
+
+
     public virtual void Exit()
     {
         isExitingState = true;
         if (!isAnimationFinished) isAnimationFinished = true;
-        animationController.SetBool(animationName, false);
+        
+        
+        //animationController.SetBool(animationName, false);
     }
     public virtual void LogicUpdate()
     {
         TransitionChecks();
+        
     }
     public virtual void PhysicsUpdate() { }
-    public virtual void TransitionChecks() { }
+    public virtual void TransitionChecks() 
+    {
+        AnimatorStateInfo info = animationController.GetCurrentAnimatorStateInfo(0);
+        if (info.normalizedTime > 1 && !animationController.IsInTransition(0))
+        {
+            animationController.SetTrigger(animationName);
+        }
+    }
+    
 
     public virtual void AnimationTrigger() 
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,17 @@ public class PlayerStateMachine
 
     
 
-    public void ChangeState(PlayerState newState)
+    public PlayerState ChangeState(PlayerState newState)
     {
+        if (_CurrentState == newState)
+        {
+            return _CurrentState;
+        }
+        
         _CurrentState.Exit();
         _CurrentState = newState;
         _CurrentState.Enter();
+        return _CurrentState;
     }
     public void InitializeStateMachine(PlayerState initialState)
     {
