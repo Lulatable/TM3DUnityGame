@@ -60,7 +60,9 @@
   <ItemGroup>
     <Compile Include="Assets\character\statemachine\PlayerStateMachine.cs" />
     <Compile Include="Assets\enemy\ennemyFollower\Ennemy_Follower.cs" />
+    <Compile Include="Assets\character\Player_Field_Of_Attack.cs" />
     <Compile Include="Assets\character\statemachine\Classic\idleState.cs" />
+    <Compile Include="Assets\Health_ennemy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\enemy\ennemyFollower\Field_Of_Attack.cs" />

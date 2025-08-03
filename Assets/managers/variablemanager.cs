@@ -16,6 +16,7 @@ using UnityEngine;
         public bool LongAttack;
         public bool ShortAttack;
         public bool isMoving;
+        public bool CanAttack;
 
 
 }
