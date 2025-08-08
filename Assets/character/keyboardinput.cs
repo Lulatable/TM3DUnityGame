@@ -31,7 +31,7 @@ public class keyboardinput : MonoBehaviour
 
 
         // vérifie si une touche est pressé
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
         {
             variableManager.instance.isMoving = true;
         }

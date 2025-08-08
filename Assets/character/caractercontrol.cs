@@ -10,19 +10,20 @@ public class caractercontrol : MonoBehaviour
 {
     public float moveUnit;
     public float speed;
- 
+
     private Rigidbody rb;
 
     // Start is called before the first frame update
     private UnityEngine.Quaternion direction;
+    private UnityEngine.Quaternion absolutedirection;
     public float turnSmoothTime;
     // public Transform cam;
-
+    private long attackTick;
     private float turnSmoothVelocity;
 
     public player player;
+    public Animator animator;
 
-    
 
 
     void Start()
@@ -32,53 +33,60 @@ public class caractercontrol : MonoBehaviour
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         // So that the character doesn't collapse
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        Animator animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         player = new player(this, animator);
     }
 
     // Update is called once per frame
+    
+    
+    
     void Update()
     {
-        PlayerState state = player.Update();
-        if(state != null)
-        {
-            print("New state: " + state + " ");
-        }
-
         direction = getDirections();
-       // this.gameObject.transform.rotation = direction;
-       
-       
+        if (variableManager.instance.ShortAttack && (attackTick == 0 || System.DateTime.Now.Ticks - attackTick > 10000000))
+        {
+            animator.SetTrigger("Short Attack");
 
-        //if (variableManager.instance.MoveRight == true)
-        //{
-        //UnityEngine.Vector3 rotationVector = new UnityEngine.Vector3(0, 90, 0);
-        //UnityEngine.Quaternion rotation = UnityEngine.Quaternion.Euler(rotationVector);
-        //return UnityEngine.Quaternion.Euler(0f, 90f, 0f);
-        //}
-       // if (variableManager.instance.MoveRight == true || variableManager.instance.MoveUp == true || variableManager.instance.MoveLeft == true || variableManager.instance.MoveDown == true)
-         //{
-          //  rb.velocity = vectorM * speed;
-        //}
-
-     //   if (variableManager.instance.MoveRight || variableManager.instance.MoveDown || variableManager.instance.MoveUp || variableManager.instance.MoveLeft)
-       // {
-         //   rb.velocity = vectorM; //* speed;
-        //}
-       /* if (variableManager.instance.MoveLeft == true)
-        {
-            rb.velocity = vectorM * speed;
+            attackTick = System.DateTime.Now.Ticks;
         }
-        if (variableManager.instance.MoveDown == true)
-        {
-            rb.velocity = vectorM * speed;
-        }
-        if (variableManager.instance.MoveUp == true)
-        {
-            rb.velocity = vectorM * speed;
-        }*/
+         
+        
 
         
+       // this.gameObject.transform.rotation = direction;
+
+
+
+            //if (variableManager.instance.MoveRight == true)
+            //{
+            //UnityEngine.Vector3 rotationVector = new UnityEngine.Vector3(0, 90, 0);
+            //UnityEngine.Quaternion rotation = UnityEngine.Quaternion.Euler(rotationVector);
+            //return UnityEngine.Quaternion.Euler(0f, 90f, 0f);
+            //}
+            // if (variableManager.instance.MoveRight == true || variableManager.instance.MoveUp == true || variableManager.instance.MoveLeft == true || variableManager.instance.MoveDown == true)
+            //{
+            //  rb.velocity = vectorM * speed;
+            //}
+
+            //   if (variableManager.instance.MoveRight || variableManager.instance.MoveDown || variableManager.instance.MoveUp || variableManager.instance.MoveLeft)
+            // {
+            //   rb.velocity = vectorM; //* speed;
+            //}
+            /* if (variableManager.instance.MoveLeft == true)
+             {
+                 rb.velocity = vectorM * speed;
+             }
+             if (variableManager.instance.MoveDown == true)
+             {
+                 rb.velocity = vectorM * speed;
+             }
+             if (variableManager.instance.MoveUp == true)
+             {
+                 rb.velocity = vectorM * speed;
+             }*/
+
+
 
     }
 
@@ -88,20 +96,29 @@ public class caractercontrol : MonoBehaviour
 
     public void FixedUpdate()
     {
+         player.Update();
+
+        if (direction == UnityEngine.Quaternion.identity)
+        {
+            absolutedirection = transform.rotation;
+        }
         if (direction != UnityEngine.Quaternion.identity)
         {
             float angle = Mathf.SmoothDampAngle(
                 transform.eulerAngles.y,
-                direction.eulerAngles.y , //+ cam.eulerAngles.y,
+                direction.eulerAngles.y + absolutedirection.eulerAngles.y, //+ cam.eulerAngles.y,
                 ref turnSmoothVelocity,
                 turnSmoothTime
             );
             rb.MoveRotation(UnityEngine.Quaternion.Euler(0f, angle, 0f));
-
+            
             UnityEngine.Vector3 vectorM = new(0, 0, moveUnit);
-            vectorM = UnityEngine.Quaternion.Euler(0, direction.eulerAngles.y, 0) * vectorM;
-            rb.MovePosition(rb.position + vectorM * speed * Time.fixedDeltaTime); 
+            vectorM = UnityEngine.Quaternion.Euler(0, absolutedirection.eulerAngles.y + direction.eulerAngles.y, 0) * vectorM;
+            // vectorM = UnityEngine.Quaternion.Euler(0, direction.eulerAngles.y, 0) * vectorM;
+            rb.MovePosition(rb.position + vectorM * speed * Time.fixedDeltaTime);
 
+            
+            
             //UnityEngine.Quaternion direction = getDirections();
             //this.gameObject.transform.rotation = direction;
 
@@ -119,32 +136,32 @@ public class caractercontrol : MonoBehaviour
         {
             if (variableManager.instance.MoveUp == true && variableManager.instance.MoveRight == true)
             {
-                return UnityEngine.Quaternion.Euler(0f, 45f, 0f);
+                return UnityEngine.Quaternion.Euler(0f,  45f, 0f);
             }
             if (variableManager.instance.MoveUp == true && variableManager.instance.MoveLeft == true)
             {
                 return UnityEngine.Quaternion.Euler(0f, 315f, 0f);
             }
-            if (variableManager.instance.MoveDown == true && variableManager.instance.MoveRight == true)
-            {
-                return UnityEngine.Quaternion.Euler(0f, 135f, 0f);
-            }
-            if (variableManager.instance.MoveDown == true && variableManager.instance.MoveLeft == true)
-            {
-                return UnityEngine.Quaternion.Euler(0f, 225f, 0f);
-            }
+            //if (variableManager.instance.MoveDown == true && variableManager.instance.MoveRight == true)
+            //{
+            //    return UnityEngine.Quaternion.Euler(0f, 135f, 0f);
+           // }
+            //if (variableManager.instance.MoveDown == true && variableManager.instance.MoveLeft == true)
+           // {
+             //   return UnityEngine.Quaternion.Euler(0f, 225f, 0f);
+            //}
             if (variableManager.instance.MoveRight == true)
             {
-                return UnityEngine.Quaternion.Euler(0f, 90f, 0f);
+                return UnityEngine.Quaternion.Euler(0f,90f, 0f);
             }
             if (variableManager.instance.MoveLeft == true)
             {
                 return UnityEngine.Quaternion.Euler(0f, 270f, 0f);
             }
-            if (variableManager.instance.MoveDown == true)
-            {
-                return UnityEngine.Quaternion.Euler(0f, 180f, 0f);
-            }
+           // if (variableManager.instance.MoveDown == true)
+            //{
+             //   return UnityEngine.Quaternion.Euler(0f, 180f, 0f);
+           // }
             if (variableManager.instance.MoveUp == true)
             {
                 return UnityEngine.Quaternion.Euler(0f, 360f, 0f);
