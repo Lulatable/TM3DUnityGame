@@ -282,7 +282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660018411587069911, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7833191843121104868, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: _ennemyPrefab
@@ -311,7 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130540640}
   - component: {fileID: 130540639}
-  - component: {fileID: 130540641}
+  - component: {fileID: 130540642}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 4072734}
   m_Follow: {fileID: 4072734}
   m_Lens:
     FieldOfView: 60
@@ -374,7 +374,7 @@ Transform:
   - {fileID: 1320414933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &130540641
+--- !u!114 &130540642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,9 +383,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 130540638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83aa1deea088f4340b9ba763175a6310, type: 3}
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &351071689
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +514,7 @@ MonoBehaviour:
   moveUnit: 3
   speed: 1
   turnSmoothTime: 0.1
+  animator: {fileID: 0}
 --- !u!64 &585400722
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -589,6 +608,7 @@ MonoBehaviour:
   moveUnit: 4
   speed: 2
   turnSmoothTime: 0
+  animator: {fileID: 0}
 --- !u!65 &632483164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -756,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660018411587069911, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7833191843121104868, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: _ennemyPrefab
@@ -1892,6 +1912,7 @@ MonoBehaviour:
   moveUnit: 3
   speed: 1
   turnSmoothTime: 0.1
+  animator: {fileID: 0}
 --- !u!4 &1411922138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6239712913075717070, guid: 7569866452c422745a9c3f1edd901499, type: 3}
@@ -2393,7 +2414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660018411587069911, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7833191843121104868, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: _ennemyPrefab

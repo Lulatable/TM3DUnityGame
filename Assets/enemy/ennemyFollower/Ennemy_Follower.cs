@@ -36,11 +36,11 @@ public class Ennemy_Follower : MonoBehaviour
     {;
         if (!fov.canSeePlayer && !foa.canAttackPlayer) 
         {
-
-            agent.destination = _finalTargetPos;
-            if ((ennemy.transform.position - _finalTargetPos).sqrMagnitude > 0.01f) 
+            
+            if (agent.remainingDistance <= agent.stoppingDistance) 
             {
-               // _finalTargetPos = getRandompos();
+                _finalTargetPos = getRandompos();
+                agent.destination = _finalTargetPos;
             }
         }
         if (fov.canSeePlayer)  

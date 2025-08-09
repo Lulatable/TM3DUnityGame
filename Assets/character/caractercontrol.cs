@@ -28,6 +28,7 @@ public class caractercontrol : MonoBehaviour
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
         // To smooth out the movement of the rigidbody between frames
         rb.interpolation = RigidbodyInterpolation.Interpolate;
