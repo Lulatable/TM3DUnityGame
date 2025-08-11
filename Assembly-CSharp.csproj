@@ -73,6 +73,7 @@
     <Compile Include="Assets\character\statemachine\Classic\croucheIdleState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\character\axe\axe.cs" />
     <Compile Include="Assets\character\statemachine\Classic\crouchMoveState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\end.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\menumanager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\enemy\ennemyFollower\Field_Of_View.cs" />
+    <Compile Include="Assets\camera_follow.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Assets\enemy\ennemyFollower\Ennemy_Spawner.cs" />
     <Compile Include="Assets\managers\variablemanager.cs" />
     <Compile Include="Assets\character\statemachine\Classic\ClassicSuperState.cs" />
+    <Compile Include="Assets\character\statemachine\Classic\dyingState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\character\statemachine\Long Attack\LongattackSuperState.cs" />
     <Compile Include="Assets\character\keyboardinput.cs" />

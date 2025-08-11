@@ -69,6 +69,7 @@ public class keyboardinput : MonoBehaviour
             crouchactive = false;
         }
 
+        
 
         if (Input.GetMouseButton(0))
         {

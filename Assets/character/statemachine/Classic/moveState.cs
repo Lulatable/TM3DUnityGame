@@ -33,9 +33,10 @@ public class moveState : ClassicSuperState
     {
         base.TransitionChecks();
         
-       if (!isMoving && !isCrouching) stateMachine.ChangeState(control.player.idleState);
-       if (isMoving && isCrouching) stateMachine.ChangeState(control.player.crouchMoveState);
-       
+       if (!isMoving && !isCrouching && !isDying) stateMachine.ChangeState(control.player.idleState);
+       if (isMoving && isCrouching && !isDying) stateMachine.ChangeState(control.player.crouchMoveState);
+        if (isMoving && !isCrouching && isDying) stateMachine.ChangeState(control.player.dyingState);
+
     }
     public override void PhysicsUpdate()
     {

@@ -9,9 +9,10 @@ public class Health_ennemy : MonoBehaviour
 
     public float currentHealth;
     public float maxhealth;
+    public Animator animator;
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -20,14 +21,13 @@ public class Health_ennemy : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxhealth);
         if (currentHealth == 0)
         {
-            Destroy(gameObject);
+            animator.SetTrigger("Death");
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+            {
+                Destroy(gameObject);
+            }
+                
         }
 
-        if (variableManager.instance.CanAttack && variableManager.instance.ShortAttack)
-        {
-            currentHealth = currentHealth - 50;
-            // a vérifier ,pas sûre
-            
-        }
     }
 }

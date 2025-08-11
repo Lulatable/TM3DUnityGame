@@ -10,6 +10,7 @@ public class player
     public moveState moveState;
     public croucheIdleState crouchIdleState;
     public crouchMoveState crouchMoveState;
+    public dyingState dyingState;
 
     private PlayerStateMachine stateMachine;
 
@@ -20,8 +21,10 @@ public class player
             moveState = new moveState(_control, stateMachine, _animationController, "Slow Run");
             crouchIdleState = new croucheIdleState(_control, stateMachine, _animationController, "Idle Crouch");
             crouchMoveState = new crouchMoveState(_control, stateMachine, _animationController, "Crouch");
+            dyingState = new dyingState(_control, stateMachine, _animationController, "Death");
 
-            stateMachine.InitializeStateMachine(idleState);
+
+        stateMachine.InitializeStateMachine(idleState);
         }
 
     

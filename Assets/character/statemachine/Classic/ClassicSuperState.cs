@@ -9,13 +9,14 @@ public class ClassicSuperState : PlayerState
     }
     protected bool isMoving;
     protected bool isCrouching;
+    protected bool isDying;
     
 
     public override void LogicUpdate()
     {
         isMoving = variableManager.instance.isMoving;
         isCrouching = variableManager.instance.Crouch;
-       
+        isDying = variableManager.instance.isDying;
         base.LogicUpdate();
         
 

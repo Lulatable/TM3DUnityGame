@@ -12,11 +12,14 @@ using UnityEngine;
         public bool MoveDown;
         public bool MoveLeft;
         public bool Crouch;
+        public bool isDying;
         public bool isGameOver;
+        public bool countDeath;
         public bool LongAttack;
         public bool ShortAttack;
         public bool isMoving;
         public bool CanAttack;
+    
 
 
 }
