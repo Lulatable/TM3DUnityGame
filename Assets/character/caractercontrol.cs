@@ -45,20 +45,24 @@ public class caractercontrol : MonoBehaviour
     
     void Update()
     {
-        direction = getDirections();
-        if (variableManager.instance.ShortAttack && (attackTick == 0 || System.DateTime.Now.Ticks - attackTick > 10000000))
+        if (!variableManager.instance.isDying)
         {
-            animator.SetTrigger("Short Attack");
-            
-            attackTick = System.DateTime.Now.Ticks;
-        }
-         
+            direction = getDirections();
+            if (variableManager.instance.ShortAttack && (attackTick == 0 || System.DateTime.Now.Ticks - attackTick > 10000000))
+            {
+                animator.SetTrigger("Short Attack");
 
-        if (animator.GetCurrentAnimatorStateInfo(1).IsName("Short Attack"))
-        {
-            variableManager.instance.CanAttack = true;
+                attackTick = System.DateTime.Now.Ticks;
+            }
+
+
+            if (animator.GetCurrentAnimatorStateInfo(1).IsName("Short Attack"))
+            {
+                variableManager.instance.CanAttack = true;
+            }
+            else variableManager.instance.CanAttack = false;
         }
-        else variableManager.instance.CanAttack = false;
+        
 
         // this.gameObject.transform.rotation = direction;
 

@@ -834,9 +834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046368d04fd4718439b6acd198c274c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 100
+  currentHealth: 25
   maxhealth: 100
   animator: {fileID: 0}
+  isdead: 0
 --- !u!114 &506291258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,6 +901,7 @@ MonoBehaviour:
   foa: {fileID: 506291258}
   healthManager: {fileID: 1411922133}
   animator: {fileID: 506291262}
+  health: {fileID: 0}
 --- !u!195 &506291261
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2805,6 +2807,7 @@ MonoBehaviour:
   foa: {fileID: 2053785671}
   healthManager: {fileID: 1411922133}
   animator: {fileID: 0}
+  health: {fileID: 0}
 --- !u!136 &2053785665
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2974,6 +2977,7 @@ MonoBehaviour:
   currentHealth: 25
   maxhealth: 100
   animator: {fileID: 0}
+  isdead: 0
 --- !u!1001 &6825590147353961569
 PrefabInstance:
   m_ObjectHideFlags: 0

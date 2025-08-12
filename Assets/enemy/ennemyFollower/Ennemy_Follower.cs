@@ -24,45 +24,68 @@ public class Ennemy_Follower : MonoBehaviour
     private Vector3 _targetPos;
     private Vector3 _finalTargetPos;
     public Animator animator;
+    float timer;
+    int staytime;
+    public Health_ennemy health;
+    bool countdeath;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         _finalTargetPos = getRandompos();
         animator = GetComponent<Animator>();
-        animator.SetBool("walking", true);
+        health = GetComponent<Health_ennemy>();
+        animator.SetBool("walking", false);
+        countdeath = false;
         
     }
 
     // Update is called once per frame
     void Update()
     {;
-        if (!fov.canSeePlayer && !foa.canAttackPlayer) 
+        if (health.isdead)
         {
-            
-            if (agent.remainingDistance <= agent.stoppingDistance) 
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
             {
-               
-                _finalTargetPos = getRandompos();
-                
-                agent.destination = _finalTargetPos;
+               countdeath = true;
+            }
+            else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Death") && countdeath)
+            {
+                Destroy(gameObject);
             }
         }
-        if (fov.canSeePlayer)  
+        else 
         {
-             agent.destination = player.position;
+            if (!fov.canSeePlayer && !foa.canAttackPlayer)
+            {
+                timer += Time.deltaTime;
+                if (agent.remainingDistance <= agent.stoppingDistance && timer > 5)
+                {
+
+                    animator.SetBool("walking", true);
+                    _finalTargetPos = getRandompos();
+
+                    agent.destination = _finalTargetPos;
+                }
+            }
+            if (fov.canSeePlayer || staytime < 7)
+            {
+                agent.destination = player.position;
+                staytime += 1;
+            }
+            if (foa.canAttackPlayer && (attackTick == 0 || System.DateTime.Now.Ticks - attackTick > 10000000))
+            {
+                animator.SetTrigger("attack");
+                healthManager.currentHealth = healthManager.currentHealth - 25;
+
+                // a vérifier ,pas sûre
+                attackTick = System.DateTime.Now.Ticks;
+
+            }
+
         }
-        if (foa.canAttackPlayer && ( attackTick ==0 || System.DateTime.Now.Ticks - attackTick > 10000000))
-        {
-            animator.SetTrigger("attack");
-            healthManager.currentHealth = healthManager.currentHealth - 25;
 
-            // a vérifier ,pas sûre
-            attackTick = System.DateTime.Now.Ticks;
 
-        }
-
-       
     }
     IEnumerator waiter(int a, int b)
     {
