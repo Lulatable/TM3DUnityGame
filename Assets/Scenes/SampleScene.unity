@@ -296,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660018411587069911, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7833191843121104868, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: _ennemyPrefab
@@ -1334,7 +1334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660018411587069911, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7833191843121104868, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: _ennemyPrefab
@@ -1886,7 +1886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5427129120885339462, guid: dcf2dd140097ea041ba8b70d12fa4df9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5427129120885339462, guid: dcf2dd140097ea041ba8b70d12fa4df9, type: 3}
       propertyPath: m_TagString
@@ -2787,7 +2787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2053785664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3032,7 +3032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660018411587069911, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7833191843121104868, guid: acc9db104e3c9b94387319b1956caa96, type: 3}
       propertyPath: _ennemyPrefab

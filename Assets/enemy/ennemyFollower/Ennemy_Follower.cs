@@ -44,7 +44,7 @@ public class Ennemy_Follower : MonoBehaviour
         countdeath = false;
         
     }
-
+    private float countNotWalking = 0;
     // Update is called once per frame
     void Update()
     {
@@ -61,19 +61,33 @@ public class Ennemy_Follower : MonoBehaviour
         }
         else 
         {
-            if (!fov.canSeePlayer && !foa.canAttackPlayer && staytime > 6)
+            if ((!fov.canSeePlayer && !foa.canAttackPlayer) || staytime > 6)
             {
+                staytime = 0;
                 animator.SetBool("running", false);
-                animator.SetBool("walking", false);
+                //animator.SetBool("walking", false);
                 timer += Time.deltaTime;
-                if (agent.remainingDistance > agent.stoppingDistance)
+                bool walking = animator.GetBool("walking");
+                
+                if (agent.remainingDistance - agent.stoppingDistance < 0.01)
                 {
+                    print("Stop walking");
+                    countNotWalking = 0.0f;
+                    if(animator.GetBool("walking"))
+                    {
+                        animator.SetBool("walking", false);
+                    }
+                } else if(!animator.GetBool("walking") && countNotWalking > 1.5f)
+                //if (agent.remainingDistance > agent.stoppingDistance)
+                {
+                    print("Start walking");
+                    countNotWalking = 0.0f;
                     animator.SetBool("walking", true);
-                }
-                if (agent.remainingDistance <= agent.stoppingDistance)
+                } else
                 {
-                    animator.SetBool("walking", false);
+                    countNotWalking += Time.deltaTime;
                 }
+                
                 if (agent.remainingDistance <= agent.stoppingDistance && timer > 3)
                 {
 
@@ -84,10 +98,15 @@ public class Ennemy_Follower : MonoBehaviour
             }
             else if (fov.canSeePlayer || staytime < 6)
             {
+                
                 animator.SetBool("walking", false);
                 animator.SetBool("running", true);
                 agent.destination = player.position;
-                staytime += 1;
+                if (!fov.canSeePlayer)
+                {
+                    staytime += 1;
+                }
+                
             }
             if (foa.canAttackPlayer && (attackTick == 0 || System.DateTime.Now.Ticks - attackTick > 10000000))
             {
