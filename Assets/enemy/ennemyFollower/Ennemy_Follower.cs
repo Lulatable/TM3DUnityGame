@@ -13,7 +13,7 @@ public class Ennemy_Follower : MonoBehaviour
     // Start is called before the first frame update
 
     public float distance;
-
+    private Rigidbody rb;
     public Transform player;
     public Transform ennemy;
     private NavMeshAgent agent;
@@ -31,6 +31,11 @@ public class Ennemy_Follower : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        // To smooth out the movement of the rigidbody between frames
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        // So that the character doesn't collapse
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         agent = GetComponent<NavMeshAgent>();
         _finalTargetPos = getRandompos();
         animator = GetComponent<Animator>();
@@ -42,7 +47,7 @@ public class Ennemy_Follower : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {;
+    {
         if (health.isdead)
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
@@ -56,20 +61,31 @@ public class Ennemy_Follower : MonoBehaviour
         }
         else 
         {
-            if (!fov.canSeePlayer && !foa.canAttackPlayer)
+            if (!fov.canSeePlayer && !foa.canAttackPlayer && staytime > 6)
             {
+                animator.SetBool("running", false);
+                animator.SetBool("walking", false);
                 timer += Time.deltaTime;
-                if (agent.remainingDistance <= agent.stoppingDistance && timer > 5)
+                if (agent.remainingDistance > agent.stoppingDistance)
+                {
+                    animator.SetBool("walking", true);
+                }
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    animator.SetBool("walking", false);
+                }
+                if (agent.remainingDistance <= agent.stoppingDistance && timer > 3)
                 {
 
-                    animator.SetBool("walking", true);
                     _finalTargetPos = getRandompos();
 
                     agent.destination = _finalTargetPos;
                 }
             }
-            if (fov.canSeePlayer || staytime < 7)
+            else if (fov.canSeePlayer || staytime < 6)
             {
+                animator.SetBool("walking", false);
+                animator.SetBool("running", true);
                 agent.destination = player.position;
                 staytime += 1;
             }
