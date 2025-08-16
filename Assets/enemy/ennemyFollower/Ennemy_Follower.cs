@@ -13,6 +13,7 @@ public class Ennemy_Follower : MonoBehaviour
     // Start is called before the first frame update
 
     public float distance;
+    public float speed;
     private Rigidbody rb;
     public Transform player;
     public Transform ennemy;
@@ -40,7 +41,7 @@ public class Ennemy_Follower : MonoBehaviour
         _finalTargetPos = getRandompos();
         animator = GetComponent<Animator>();
         health = GetComponent<Health_ennemy>();
-        animator.SetBool("walking", false);
+        
         countdeath = false;
         
     }
@@ -63,44 +64,70 @@ public class Ennemy_Follower : MonoBehaviour
         {
             if ((!fov.canSeePlayer && !foa.canAttackPlayer) || staytime > 6)
             {
+                if (agent.remainingDistance <= agent.stoppingDistance && timer <= 3)
+                {
+                    print("idle");
+                    timer += Time.deltaTime;
+                    agent.speed = 0;
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        animator.SetTrigger("idle");
+                    }
+                        
+                }
+               
+                else if (agent.remainingDistance <= agent.stoppingDistance && timer > 3)
+                {
+                    print("new target");
+                    agent.speed = speed;
+                    _finalTargetPos = getRandompos();
+                    agent.destination = _finalTargetPos;
+                    
+                }
+                else if (agent.speed > 0.5)
+                {
+                    print("speed");
+                    timer = 0;
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                    {
+                        animator.SetTrigger("walk");
+                    }
+                }
+
+
                 staytime = 0;
-                animator.SetBool("running", false);
+                
                 //animator.SetBool("walking", false);
                 timer += Time.deltaTime;
-                bool walking = animator.GetBool("walking");
                 
-                if (agent.remainingDistance - agent.stoppingDistance < 0.01)
-                {
-                    print("Stop walking");
-                    countNotWalking = 0.0f;
-                    if(animator.GetBool("walking"))
-                    {
-                        animator.SetBool("walking", false);
-                    }
-                } else if(!animator.GetBool("walking") && countNotWalking > 1.5f)
+                
+                //if (agent.remainingDistance - agent.stoppingDistance < 0.01)
+               // {
+                    
+                   // countNotWalking = 0.0f;
+                  //  if(animator.GetBool("walking"))
+                    //{
+                        //animator.SetBool("walking", false);
+                   // }
+                //} else if(!animator.GetBool("walking") && countNotWalking > 1.5f)
                 //if (agent.remainingDistance > agent.stoppingDistance)
-                {
-                    print("Start walking");
-                    countNotWalking = 0.0f;
-                    animator.SetBool("walking", true);
-                } else
-                {
-                    countNotWalking += Time.deltaTime;
-                }
+                //{
+                    //print("Start walking");
+                   // countNotWalking = 0.0f;
+                  //  animator.SetBool("walking", true);
+               // } else
+                //{
+                  //  countNotWalking += Time.deltaTime;
+                //}
                 
-                if (agent.remainingDistance <= agent.stoppingDistance && timer > 3)
-                {
-
-                    _finalTargetPos = getRandompos();
-
-                    agent.destination = _finalTargetPos;
-                }
+                
             }
             else if (fov.canSeePlayer || staytime < 6)
             {
-                
-                animator.SetBool("walking", false);
-                animator.SetBool("running", true);
+
+
+                animator.SetTrigger("run");
+                agent.speed = speed * 2;
                 agent.destination = player.position;
                 if (!fov.canSeePlayer)
                 {
