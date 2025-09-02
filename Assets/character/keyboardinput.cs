@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class keyboardinput : MonoBehaviour
@@ -7,8 +8,7 @@ public class keyboardinput : MonoBehaviour
     //gère les input des touches du clavier
 
     private bool crouchactive;
-
-
+   
 
     // Start is called before the first frame update
     void Start()
@@ -80,8 +80,15 @@ public class keyboardinput : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             variableManager.instance.LongAttack = true;
+            
+
         }
-        else variableManager.instance.LongAttack = false;
-    }
+        else if (variableManager.instance.LongAttack)
+        {
+            variableManager.instance.LongAttack = false;
+            variableManager.instance.LongAttackThrow = true;
+        }
+        
+    }   
 }
 

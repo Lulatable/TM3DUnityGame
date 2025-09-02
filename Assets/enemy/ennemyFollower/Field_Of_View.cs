@@ -27,6 +27,8 @@ public class Field_Of_View : MonoBehaviour
     {
         
     }
+
+     // permet d'appeler la fonction avec un intervalle choisi
     private IEnumerator FOVRoutine()
     {
         float delay = 0.2f;
@@ -41,6 +43,7 @@ public class Field_Of_View : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
+        
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
         if(rangeChecks.Length != 0)

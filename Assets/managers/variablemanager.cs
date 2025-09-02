@@ -16,6 +16,7 @@ using UnityEngine;
         public bool isGameOver;
         public bool countDeath;
         public bool LongAttack;
+        public bool LongAttackThrow;
         public bool ShortAttack;
         public bool isMoving;
         public bool CanAttack;

@@ -33,9 +33,9 @@ public class ennemy_angel : MonoBehaviour
             animator.speed = 0;
             animator.SetBool("Run", true);
             agent.SetDestination(transform.position);
-            
+
         }
-        else if (!GeometryUtility.TestPlanesAABB(planes,bodymesh.GetComponent<Renderer>().bounds))
+        else if (!GeometryUtility.TestPlanesAABB(planes, bodymesh.GetComponent<Renderer>().bounds))
         {
             agent.speed = speed;
             animator.speed = 1;
@@ -43,10 +43,13 @@ public class ennemy_angel : MonoBehaviour
 
             if (distance <= catchDistance)
             {
-                
                 healthPlayer.currentHealth = 0;
             }
-        }
+                
+        }   
+          
+      
+        
         
     }
 }

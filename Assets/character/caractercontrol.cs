@@ -61,6 +61,17 @@ public class caractercontrol : MonoBehaviour
                 variableManager.instance.CanAttack = true;
             }
             else variableManager.instance.CanAttack = false;
+
+            if (variableManager.instance.LongAttack)
+            {
+                animator.SetTrigger("Start Long Attack");
+
+                
+            }
+            if (variableManager.instance.LongAttackThrow)
+            {
+                animator.SetTrigger("End Long Attack");
+            }
         }
         
 
@@ -128,8 +139,8 @@ public class caractercontrol : MonoBehaviour
 
             if (direction == UnityEngine.Quaternion.identity)
             {
-                //absolutedirection = transform.rotation;
-                absolutedirection = camera_follow.transform.rotation;
+                absolutedirection = transform.rotation;
+                
             }
             if (direction != UnityEngine.Quaternion.identity)
             {
@@ -201,5 +212,9 @@ public class caractercontrol : MonoBehaviour
 
 
         }
+    public void testFunction()
+    {
+        Debug.Log("Function");
+    }
     }
 
