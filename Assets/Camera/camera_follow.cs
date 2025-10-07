@@ -9,7 +9,7 @@ public class camera_follow : MonoBehaviour
     float rotationY = 0f;
 
     public float sensitivity = 1f;
-
+    public Transform target;
 
     void Start()
     {
@@ -19,8 +19,13 @@ public class camera_follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotationY += Input.GetAxis("Mouse X") * sensitivity;
-        rotationX += Input.GetAxis("Mouse Y") * -1 * sensitivity;
-        transform.localEulerAngles = new Vector3 (rotationX, rotationY, 0);
+        transform.position = target.position;
+        if (variableManager.instance.MoveCamera)
+        {
+            rotationY += Input.GetAxis("Mouse X") * sensitivity;
+            rotationX += Input.GetAxis("Mouse Y") * -1 * sensitivity;
+            transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
+        }    
+        
     }
 }

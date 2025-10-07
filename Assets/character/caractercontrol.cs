@@ -71,6 +71,7 @@ public class caractercontrol : MonoBehaviour
             if (variableManager.instance.LongAttackThrow)
             {
                 animator.SetTrigger("End Long Attack");
+                variableManager.instance.LongAttackThrow = false;
             }
         }
         
@@ -137,11 +138,11 @@ public class caractercontrol : MonoBehaviour
         else
         {
 
-            if (direction == UnityEngine.Quaternion.identity)
-            {
-                absolutedirection = transform.rotation;
+           // if (direction == UnityEngine.Quaternion.identity)
+           // {
+                absolutedirection = camera_follow.transform.rotation;
                 
-            }
+           // }
             if (direction != UnityEngine.Quaternion.identity)
             {
                 float angle = Mathf.SmoothDampAngle(
@@ -214,7 +215,7 @@ public class caractercontrol : MonoBehaviour
         }
     public void testFunction()
     {
-        Debug.Log("Function");
+        variableManager.instance.LongAttackEnd = true;
     }
     }
 

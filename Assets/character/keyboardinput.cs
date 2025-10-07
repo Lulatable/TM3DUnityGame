@@ -71,13 +71,13 @@ public class keyboardinput : MonoBehaviour
 
         
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.Space))
         {
             variableManager.instance.ShortAttack = true;
         }
         else variableManager.instance.ShortAttack = false;
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(0))
         {
             variableManager.instance.LongAttack = true;
             
@@ -86,9 +86,18 @@ public class keyboardinput : MonoBehaviour
         else if (variableManager.instance.LongAttack)
         {
             variableManager.instance.LongAttack = false;
-            variableManager.instance.LongAttackThrow = true;
         }
-        
+        if (Input.GetMouseButtonUp(0))
+        {
+            variableManager.instance.LongAttackThrow = true;
+
+
+        }
+        if (Input.GetMouseButton(1))
+        {
+            variableManager.instance.MoveCamera = true;
+        }
+        else variableManager.instance.MoveCamera = false;
     }   
 }
 

@@ -17,9 +17,11 @@ using UnityEngine;
         public bool countDeath;
         public bool LongAttack;
         public bool LongAttackThrow;
+        public bool LongAttackEnd;
         public bool ShortAttack;
         public bool isMoving;
         public bool CanAttack;
+        public bool MoveCamera;
     
 
 

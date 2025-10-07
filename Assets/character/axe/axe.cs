@@ -12,6 +12,7 @@ public class axe : MonoBehaviour
     public GameObject camera_follow;
     float rotationX = 0f;
     float rotationY = 0f;
+    float rotationZ = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,13 +25,15 @@ public class axe : MonoBehaviour
     {
         rotationY += camera_follow.transform.rotation.y;
         rotationX += camera_follow.transform.rotation.x;
+        rotationZ += camera_follow.transform.rotation.z;
 
-        if (variableManager.instance.LongAttackThrow)
+        if (variableManager.instance.LongAttackEnd)
         {
             transform.parent = null;
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(rotationX, rotationY, 0), ForceMode.Impulse);
-            rb.AddTorque(new Vector3(spinrate,0,0), ForceMode.Impulse);
+            Quaternion.LookRotation(transform.forward, Vector3.up);
+            rb.AddForce(new Vector3(force, 0, force), ForceMode.Impulse);
+            rb.AddTorque(new Vector3(0, 0, spinrate), ForceMode.Impulse);
             isfloating = true;
             variableManager.instance.LongAttackThrow = false;
 

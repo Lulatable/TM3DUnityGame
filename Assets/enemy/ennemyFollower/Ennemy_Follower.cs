@@ -29,6 +29,7 @@ public class Ennemy_Follower : MonoBehaviour
     int staytime;
     public Health_ennemy health;
     bool countdeath;
+    bool isAttacking;
 
     void Start()
     {
@@ -138,7 +139,8 @@ public class Ennemy_Follower : MonoBehaviour
             if (foa.canAttackPlayer && (attackTick == 0 || System.DateTime.Now.Ticks - attackTick > 10000000))
             {
                 animator.SetTrigger("attack");
-                healthManager.currentHealth = healthManager.currentHealth - 25;
+                
+                //healthManager.currentHealth = healthManager.currentHealth - 25;
 
                 // a vérifier ,pas sûre
                 attackTick = System.DateTime.Now.Ticks;

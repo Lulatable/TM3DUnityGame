@@ -43,18 +43,19 @@ public class Field_Of_View : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        
+     // créer un collider cercle autour de l'ennemi qui vérifie s'il y a le joueur
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
         if(rangeChecks.Length != 0)
         {
+            //récupère la position du jouer et calcule la direction jusqu'au joueur
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
-
+            // vérifie s'il est dans l'arc de cercle créer avec l'angle
             if(Vector3.Angle(transform.forward,directionToTarget) < angle /2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
+                // crée un faisceau de l'ennemi au joueur qui est arreté par les obstacle
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
